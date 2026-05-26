@@ -13,3 +13,10 @@ class Circle(Shape):
     
     def get_perimeter(self):
         return 2 * Circle.PI * self.radius
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "type": self.shape_type,
+            "radius": self.radius,
+        }
