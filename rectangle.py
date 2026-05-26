@@ -1,6 +1,6 @@
 from shape import Shape
 
-class Square(Shape):
+class Rectangle(Shape):
     def __init__(self, shape_id, shape_type, length, width):
         super().__init__(shape_id, shape_type)
         self.length = length
