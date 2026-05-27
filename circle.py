@@ -18,5 +18,7 @@ class Circle(Shape):
         return {
             "id": self.id,
             "type": self.shape_type,
-            "radius": self.radius,
+            "values": {
+                "radius": self.radius,
+            },
         }

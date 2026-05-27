@@ -10,9 +10,4 @@ class Shape:
         pass
 
     def to_dict(self):
-        return {
-            "id": self.id,
-            "shape_type": self.shape_type,
-            "get_area": self.get_area,
-            "get_perimeter": self.get_perimeter,
-        }
+        pass
