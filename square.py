@@ -13,8 +13,8 @@ class Square(Shape):
     
     def to_dict(self):
         return {
-            "id": self.id,
-            "type": self.shape_type,
+            "shape_id": self.shape_id,
+            "shape_type": self.shape_type,
             "values": {
                 "side": self.side
             }
