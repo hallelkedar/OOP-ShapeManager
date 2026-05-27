@@ -9,13 +9,14 @@ class Utils:
                     choice_num = int(choice)
                     if choice_range:
                         if 0 < choice_num < choice_range+1:
-                            return choice
+                            return choice_num
                     
-                    elif choice > 0:
+                    elif choice_num > 0:
                         return choice_num
                     
             elif input_type.lower() == 'shape':
-                if choice in shapes:
-                    return choice
+                shape_type = choice.capitalize()
+                if shape_type in shapes:
+                    return shape_type
             
             print("Invalid input.")
