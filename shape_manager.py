@@ -36,8 +36,13 @@ class ShapeManager:
     def get_all_shapes(self):
         output_list = []
         for shape in self.shapes:
-            shape_dict = shape.todict()
-            shape_str = '\n'.join([f"{k.capitalize()}: {v}" for k, v in shape_dict.items()])
+            shape_dict = shape.to_dict()['values']
+            dict_str = '\n'.join([f"{k.capitalize()}: {v}" for k, v in shape_dict.items()])
+            shape_str = f"""
+                    Shape #{shape.shape_id} [{shape.shape_type}]
+                    ----------
+                    {dict_str}
+                    """
             output_list.append(shape_str)
         return output_list
     
@@ -58,7 +63,7 @@ class ShapeManager:
     
     def save_to_json(self, file_name):
         
-        data = [shape.todict() for shape in self.shapes]
+        data = [shape.to_dict() for shape in self.shapes]
 
         with open(file_name, 'w') as f:
             json.dump(data, f, indent=4)
@@ -71,11 +76,18 @@ class ShapeManager:
             
             self.shapes = []
             for item in data:
-                shape_type = item.pop('shape_type')
-                shape = self.SHAPES[shape_type](**item)
-                self.shapes.append(shape)
+                shape_type = item.get('shape_type')
+               
+                shape_args = item.get('values', {})
+
+                if 'shape_id' in item:
+                    shape_args['shape_id'], shape_args['shape_type'] = item['shape_id'], item['shape_type']
+                
+                if shape_type in self.SHAPES:
+                    shape = self.SHAPES[shape_type](**shape_args)
+                    self.shapes.append(shape)
             
-        except FileNotFoundError:
+        except FileNotFoundError, json.JSONDecodeError:
             self.shapes = []
 
     def get_shape_by_id(self, shape_id: int):
