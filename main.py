@@ -9,7 +9,7 @@ SHAPES = {
         'Circle': ['radius']
     }
 
-WELCOME = """
+WELCOME = r"""
  __      __       .__                                  __          
 /  \    /  \ ____ |  |   ____  ____   _____   ____   _/  |_  ____  
 \   \/\/   // __ \|  | _/ ___\/  _ \ /     \_/ __ \  \   __\/  _ \ 
@@ -39,7 +39,9 @@ MENU = """
 MENU_RANGE = 5
 
 def get_menu_choice():
-    choice = Utils.validation_input('number', f'Enter your choice (1-{MENU_RANGE})', choice_range=MENU_RANGE)
+    choice = Utils.validation_input('number',
+                                    f'Enter your choice (1-{MENU_RANGE}): ',
+                                    choice_range=MENU_RANGE)
     return choice
 
 def get_id_from_user():
@@ -128,3 +130,6 @@ def main():
         elif choice == 5:
             print('Goodbye.')
             break
+
+if __name__ == '__main__':
+    main()
