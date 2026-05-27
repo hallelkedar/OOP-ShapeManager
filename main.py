@@ -6,7 +6,13 @@ SHAPES = {
         'Rectangle': ['length',
                       'width'
                       ],
-        'Circle': ['radius']
+        'Circle': ['radius'],
+        'Hexagon': ['side'],
+        'triangle': ['base',
+                    'height',
+                    'side_a',
+                    'side_b',
+                    'side_c']
     }
 
 WELCOME = r"""

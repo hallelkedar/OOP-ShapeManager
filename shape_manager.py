@@ -1,6 +1,6 @@
-from square import Square
-from rectangle import Rectangle
-from circle import Circle
+from shapes.square import Square
+from shapes.rectangle import Rectangle
+from shapes.circle import Circle
 import json
 
 class ShapeManager:
