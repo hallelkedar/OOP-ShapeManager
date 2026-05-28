@@ -1,17 +1,28 @@
-from shape import Shape
+from shapes.rectangle import Rectangle
 
-class Triangle(Shape):
-    def __init__(self, shape_id, shape_type, side1, side2, side3):
-        super().__init__(shape_id, shape_type)
-        self.side1 = side1
-        self.side2 = side2
-        self.side3 = side3
+class Triangle(Rectangle):
+    def __init__(self, base, height, side_a, side_b, side_c):
+        self.base = base
+        self.height = height
+        self.side_a = side_a
+        self.side_b = side_b
+        self.side_c = side_c
 
     def get_area(self):
-        return self.side1 + self.side2 + self.side3
-    
+        return (self.base * self.height) / 2
+
     def get_perimeter(self):
-        pass
+        return self.side_a + self.side_b + self.side_c
     
     def to_dict(self):
-        pass
+        return {
+            "shape_id": self.shape_id,
+            "shape_type": self.shape_type,
+            "values": {
+                'base': self.base,
+                'height': self.height,
+                'side_a': self.side_a,
+                'side_b': self.side_b,
+                'side_c': self.side_c,
+            },
+        }
