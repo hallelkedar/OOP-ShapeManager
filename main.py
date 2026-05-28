@@ -39,10 +39,12 @@ MENU = """
     2. Show all shapes
     3. Update shape
     4. Delete shape
-    5. Exit
+    5. Delete all shapes
+    6. Find shape by ID
+    7. Exit
     """
 
-MENU_RANGE = 5
+MENU_RANGE = 7
 
 def get_menu_choice():
     choice = Utils.validation_input('number',
@@ -83,6 +85,17 @@ def get_shape_update(shape_manager):
         new_data[f] = new_value
     
     return shape_id, new_data
+
+def handle_remove_all_shapes():
+    
+    while True:
+        choice = input('You sure wanna remove all shapes? (Yes/No): ')
+        if choice.lower() == 'yes':
+            return True
+        elif choice.lower() == 'no':
+            return False
+        
+        print('Invalid input. choose yes or no.')
 
 def main():
 
@@ -134,6 +147,20 @@ def main():
                 print('Error.')
         
         elif choice == 5:
+            if handle_remove_all_shapes():
+                shape_manager.remove_all_shapes()
+                print('All shapes deleted.')
+            else:
+                continue
+        elif choice == 6:
+            shape_id = Utils.validation_input('number', 'Enter shape ID: ')
+            shape = shape_manager.get_shape_by_id(shape_id)
+            if shape:
+                print(shape_manager.show_shape(shape))
+            else:
+                print('Shape was not found.')
+                
+        elif choice == 7:
             print('Goodbye.')
             break
 
