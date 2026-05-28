@@ -16,7 +16,7 @@ class Rectangle(Shape):
         return {
             "shape_id": self.shape_id,
             "shape_type": self.shape_type,
-            "values": {
+            "shape_values": {
                 "length": self.length,
                 "width": self.width,
             },

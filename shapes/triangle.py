@@ -18,7 +18,7 @@ class Triangle(Rectangle):
         return {
             "shape_id": self.shape_id,
             "shape_type": self.shape_type,
-            "values": {
+            "shape_values": {
                 'base': self.base,
                 'height': self.height,
                 'side_a': self.side_a,
