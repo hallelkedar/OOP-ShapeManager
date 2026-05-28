@@ -1,6 +1,8 @@
 from shapes.square import Square
 from shapes.rectangle import Rectangle
 from shapes.circle import Circle
+from shapes.hexagon import Hexagon
+from shapes.triangle import Triangle
 import json
 
 class ShapeManager:
@@ -8,7 +10,9 @@ class ShapeManager:
     SHAPES = {
     'Square': Square,
     'Rectangle': Rectangle,
-    'Circle': Circle
+    'Circle': Circle,
+    'Hexagon': Hexagon,
+    'Triangle': Triangle,
     }
 
     def __init__(self):
@@ -32,17 +36,25 @@ class ShapeManager:
         self.save_to_json(self.FILE_NAME)
 
         return True
-        
+    def show_shape(self, shape):
+        shape_dict = shape.to_dict()['shape_values']
+        dict_str = '\n'.join([f"{k.capitalize()}: {v}" for k, v in shape_dict.items()])
+        shape_str = f"""
+                Shape #{shape.shape_id} [{shape.shape_type}]
+                ----------
+                {dict_str}
+                Area: {shape.get_area():.2f}
+                Parimeter: {shape.get_perimeter():.2f}
+                """
+        return shape_str
+    
     def get_all_shapes(self):
         output_list = []
+        if not self.shapes:
+            return None
+        
         for shape in self.shapes:
-            shape_dict = shape.to_dict()['values']
-            dict_str = '\n'.join([f"{k.capitalize()}: {v}" for k, v in shape_dict.items()])
-            shape_str = f"""
-                    Shape #{shape.shape_id} [{shape.shape_type}]
-                    ----------
-                    {dict_str}
-                    """
+            shape_str = self.show_shape(shape)
             output_list.append(shape_str)
         return output_list
     
@@ -62,9 +74,11 @@ class ShapeManager:
             return True
     
     def save_to_json(self, file_name):
-        
-        data = [shape.to_dict() for shape in self.shapes]
-
+        if self.shapes:
+            data = [shape.to_dict() for shape in self.shapes]
+        else:
+            data = []
+            
         with open(file_name, 'w') as f:
             json.dump(data, f, indent=4)
 
@@ -77,8 +91,7 @@ class ShapeManager:
             self.shapes = []
             for item in data:
                 shape_type = item.get('shape_type')
-               
-                shape_args = item.get('values', {})
+                shape_args = item.get('shape_values', {})
 
                 if 'shape_id' in item:
                     shape_args['shape_id'], shape_args['shape_type'] = item['shape_id'], item['shape_type']
@@ -95,3 +108,6 @@ class ShapeManager:
             if shape.shape_id == shape_id:
                 return shape
             
+    def remove_all_shapes(self):
+        self.shapes = []
+        self.save_to_json(self.FILE_NAME)
