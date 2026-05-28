@@ -1,26 +1,27 @@
 # OOP Shape Manager
 
-A modular Python command-line interface (CLI) application that implements full **CRUD** functionality for managing geometric shapes. The project leverages core **Object-Oriented Programming (OOP)** principles and uses **JSON** file handling for persistent data storage.
+A concise and efficient Command-Line Interface (CLI) system to manage geometric shapes using Object-Oriented Programming (OOP) principles and persistent JSON storage.
+
+## 🚀 Features
+- **Full CRUD Support:** Create, Read, Update, and Delete shapes dynamically.
+- **OOP Architecture:** Uses a base class (`Shape`) with polymorphic methods for areas and perimeters.
+- **Persistent Storage:** Synchronizes runtime object states to `shapes.json`.
+- **Robust Validation:** Error and input handling for non-existent IDs or invalid dimensions.
 
 ---
 
-## Project Overview
-This system allows users to create, view, update, and delete various geometric shapes. While shapes exist as dynamic, rich objects in memory—automatically calculating their own areas and perimeters—their state is serialized and persisted into a local JSON database so that no data is lost when the program exits.
-
----
-
-## Project Architecture & Directory Structure
-The project strictly follows the single-responsibility principle, separating each class into its own dedicated file:
-
+## 📁 Directory Structure
 ```text
-shape_crud/
+OOP-Shape-Manager/
 │
-├── main.py             # Application entry point & interactive CLI menu loop
-├── shape.py            # Abstract/Base class for all geometric shapes
-├── rectangle.py        # Rectangle shape subclass
-├── square.py           # Square shape subclass
-├── circle.py           # Circle shape subclass
-├── triangle.py         # Triangle shape subclass
-├── hexagon.py          # Hexagon shape subclass
-├── shape_manager.py    # Data layer coordinator (CRUD logic & JSON parsing)
-└── shapes.json         # Local flat-file JSON database
+├── main.py              # Application entry point & CLI Menu
+├── shape.py             # Base Class (Shape)
+├── shape_manager.py     # Business logic & JSON core handler
+├── shapes.json          # Persistent JSON storage database
+├── utils.py             # Validate input
+└── shapes/              # Subclasses folder
+    ├── square.py
+    ├── rectangle.py
+    ├── circle.py
+    ├── triangle.py
+    └── hexagon.py
