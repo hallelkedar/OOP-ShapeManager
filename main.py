@@ -8,7 +8,7 @@ SHAPES = {
                       ],
         'Circle': ['radius'],
         'Hexagon': ['side'],
-        'triangle': ['base',
+        'Triangle': ['base',
                     'height',
                     'side_a',
                     'side_b',

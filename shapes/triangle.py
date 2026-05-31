@@ -1,7 +1,8 @@
 from shapes.rectangle import Rectangle
 
 class Triangle(Rectangle):
-    def __init__(self, base, height, side_a, side_b, side_c):
+    def __init__(self, shape_id, shape_type, base, height, side_a, side_b, side_c):
+        super().__init__(shape_id, shape_type)
         self.base = base
         self.height = height
         self.side_a = side_a
